@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { useEffect, useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { stats } from '@/lib/data';
-import { SectionHeading } from '@/components/sections/section-heading';
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import { stats } from "@/lib/data";
+import { SectionHeading } from "@/components/sections/section-heading";
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-50px' });
+  const inView = useInView(ref, { once: true, margin: "-50px" });
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
@@ -51,15 +51,16 @@ export function Stats() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="text-center"
-            >
+              className="text-center">
               <div className="font-display text-5xl font-bold text-gradient sm:text-6xl">
                 <Counter value={s.value} suffix={s.suffix} />
               </div>
               <div className="mt-3 font-display text-lg font-semibold text-foreground">
                 {s.label}
               </div>
-              <p className="mt-2 text-sm text-muted-foreground">{s.description}</p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                {s.description}
+              </p>
             </motion.div>
           ))}
         </div>

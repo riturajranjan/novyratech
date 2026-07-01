@@ -1,122 +1,115 @@
-'use client';
+"use client";
+import { ArrowRight, Menu } from "lucide-react";
+import { categories } from "@/lib/data";
+import { DesktopCategory } from "./tech-stack/DesktopCategory";
+import CodeIcon from "./tech-stack/icons/CodeIcon";
+import MobileCategory from "./tech-stack/MobileCategory";
+import { motion } from "framer-motion";
+import { SectionHeading } from "./section-heading";
 
-import { motion } from 'framer-motion';
-import { techStack } from '@/lib/data';
-import { SectionHeading } from '@/components/sections/section-heading';
-import { cn } from '@/lib/utils';
-
-const categories = ['Frontend', 'Backend', 'Database', 'Cloud', 'AI'] as const;
-
-const categoryMeta: Record<
-  string,
-  { gradient: string; glow: string; icon: string }
-> = {
-  Frontend: {
-    gradient: 'from-violet-500 to-purple-600',
-    glow: 'rgba(139,92,246,0.35)',
-    icon: '◆',
-  },
-  Backend: {
-    gradient: 'from-orange-500 to-amber-600',
-    glow: 'rgba(249,115,22,0.35)',
-    icon: '▲',
-  },
-  Database: {
-    gradient: 'from-cyan-500 to-blue-600',
-    glow: 'rgba(6,182,212,0.35)',
-    icon: '■',
-  },
-  Cloud: {
-    gradient: 'from-emerald-500 to-teal-600',
-    glow: 'rgba(16,185,129,0.35)',
-    icon: '●',
-  },
-  AI: {
-    gradient: 'from-fuchsia-500 to-pink-600',
-    glow: 'rgba(217,70,239,0.35)',
-    icon: '✦',
-  },
-};
-
-export function TechStack() {
+export default function TechStack() {
   return (
-    <section className="relative py-24 sm:py-32 overflow-hidden">
-      <div className="absolute inset-0 bg-grid opacity-20" />
-      <div className="absolute -top-20 right-1/4 h-[400px] w-[400px] rounded-full bg-violet-500/10 blur-[120px] pointer-events-none" />
-      <div className="absolute -bottom-20 left-1/4 h-[400px] w-[400px] rounded-full bg-orange-500/10 blur-[120px] pointer-events-none" />
+    <div className="min-h-screen  text-white">
+      {/* Mobile nav */}
+      <nav className="md:hidden flex items-center justify-between px-4 py-3.5 border-b border-[#1a2744]">
+        <div className="flex items-center gap-2">
+          <div className="w-7 h-7 rounded-lg bg-purple-700 flex items-center justify-center">
+            <CodeIcon size={13} />
+          </div>
+          <span className="text-[10px] font-bold tracking-[0.18em] text-gray-400 uppercase">
+            My Tech Stack
+          </span>
+        </div>
+        <button className="text-gray-400 p-1">
+          <Menu size={20} />
+        </button>
+      </nav>
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-10 py-8 md:py-12">
+        {/* Hero */}
+        {/* <div className="flex items-start justify-between mb-10 md:mb-12">
+          <div className="max-w-sm">
+            <p className="text-purple-400 text-xs font-bold tracking-widest uppercase mb-2">
+              My Tech Stack
+            </p>
+            <h1 className="text-4xl md:text-5xl font-black leading-tight mb-4">
+              <span className="text-white">Skills </span>
+              <span className="text-purple-400">&amp; Technologies</span>
+            </h1>
+            <p className="text-gray-400 text-sm md:text-base leading-relaxed">
+              A comprehensive toolkit of modern technologies I use to build
+              scalable, performant, and engaging digital experiences.
+            </p>
+          </div>
+
+         
+          <div className="hidden md:block">
+            <Hero3D />
+          </div>
+        </div> */}
+
         <SectionHeading
-          eyebrow="Our Stack"
+          eyebrow="Our Tech Stack"
           title="A modern stack across every layer"
           subtitle="Frontend, backend, database, cloud, and AI — the tools we trust to build and scale your product."
         />
 
-        <div className="mt-16 space-y-12">
-          {categories.map((cat, catIdx) => {
-            const items = techStack.filter((t) => t.category === cat);
-            const meta = categoryMeta[cat];
-            return (
+        {/* Desktop layout: timeline */}
+        <div className="hidden md:flex gap-0 mt-8">
+          <div className="w-8 flex-shrink-0" />
+          <div className="flex-1">
+            {categories.map((cat, i) => (
               <motion.div
-                key={cat}
+                key={cat.id}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.4, delay: catIdx * 0.1 }}
-              >
-                <div className="flex items-center gap-3 mb-6">
-                  <span
-                    className={cn(
-                      'flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br text-white text-sm font-bold',
-                      meta.gradient
-                    )}
-                  >
-                    {meta.icon}
-                  </span>
-                  <h3 className="font-display text-lg font-semibold">{cat}</h3>
-                  <span className="text-sm text-muted-foreground">({items.length})</span>
-                  <div className="flex-1 h-px bg-gradient-to-r from-border to-transparent" />
-                </div>
-
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-                  {items.map((t, i) => (
-                    <motion.div
-                      key={t.name}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: i * 0.05 }}
-                      whileHover={{ y: -6, scale: 1.03 }}
-                      className="group relative flex flex-col items-center justify-center gap-2 rounded-xl glass-card px-4 py-6 text-center card-hover"
-                    >
-                      <div
-                        className={cn(
-                          'absolute inset-0 rounded-xl bg-gradient-to-br opacity-0 transition-opacity duration-300 group-hover:opacity-10',
-                          meta.gradient
-                        )}
-                      />
-                      <div
-                        className="flex h-10 w-10 items-center justify-center rounded-lg border border-border/60 bg-background/40 text-lg font-bold text-muted-foreground transition-all duration-300 group-hover:text-white group-hover:border-transparent"
-                        style={{ '--tw-gradient': meta.gradient } as React.CSSProperties}
-                      >
-                        <span className={cn('bg-gradient-to-br bg-clip-text text-transparent transition-all', meta.gradient)}>
-                          {t.name.charAt(0)}
-                        </span>
-                      </div>
-                      <span className="relative font-display text-sm font-medium text-foreground">
-                        {t.name}
-                      </span>
-                      <span className="text-[10px] uppercase tracking-wider text-muted-foreground/60">
-                        {cat}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}>
+                <DesktopCategory cat={cat} last={i === categories.length - 1} />
               </motion.div>
-            );
-          })}
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile layout */}
+        <div className="md:hidden flex flex-col gap-3.5 mt-6">
+          {categories.map((cat, i) => (
+            <motion.div
+              key={cat.id}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}>
+              <MobileCategory key={cat.id} cat={cat} />
+            </motion.div>
+          ))}
+
+          <div className="flex items-center justify-between px-4 py-4 rounded-2xl border border-purple-800/40 bg-[#12082a]">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-purple-600 flex items-center justify-center flex-shrink-0">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="white"
+                  strokeWidth="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                </svg>
+              </div>
+              <div>
+                <div className="text-white font-bold text-sm">
+                  Always learning. Always building.
+                </div>
+                <div className="text-gray-400 text-xs">
+                  Let&apos;s build something amazing together!
+                </div>
+              </div>
+            </div>
+            <ArrowRight size={18} className="text-purple-400 flex-shrink-0" />
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

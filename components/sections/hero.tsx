@@ -126,7 +126,7 @@ export function Hero() {
           </motion.div>
 
           {/* Mini rating row */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
@@ -138,7 +138,7 @@ export function Hero() {
               ))}
             </div>
             <span>Loved by the founders we partner with</span>
-          </motion.div>
+          </motion.div> */}
         </motion.div>
       </div>
 

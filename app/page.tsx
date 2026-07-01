@@ -4,10 +4,10 @@ import { ServicesGrid } from '@/components/sections/services-grid';
 import { Stats } from '@/components/sections/stats';
 import { FeaturedProducts } from '@/components/sections/featured-products';
 import { Process } from '@/components/sections/process';
-import { TechStack } from '@/components/sections/tech-stack';
 import { Testimonials } from '@/components/sections/testimonials';
 import { BlogPreview } from '@/components/sections/blog-preview';
 import { CtaBanner } from '@/components/sections/cta-banner';
+import TechStack from '@/components/sections/tech-stack';
 
 export default function Home() {
   return (
@@ -19,7 +19,7 @@ export default function Home() {
       <FeaturedProducts />
       <Process />
       <TechStack />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <BlogPreview />
       <CtaBanner />
     </>
