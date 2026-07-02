@@ -354,3 +354,8 @@
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--primary) / 0.7);
 }
+
+.hero-gradient-text {
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(90deg, rgb(168, 85, 247) 0%, rgb(236, 72, 153) 40%, rgb(249, 115, 22) 100%) text;
+}

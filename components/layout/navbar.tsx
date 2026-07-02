@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, ArrowRight, Hexagon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/layout/theme-toggle";
+// import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { navLinks, services } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -148,7 +148,7 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-2">
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
             <Button
               asChild
               size="sm"
