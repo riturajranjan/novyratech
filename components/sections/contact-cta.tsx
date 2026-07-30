@@ -7,7 +7,6 @@ import { ContactCtaBackground } from "@/components/contact-cta/contact-cta-backg
 import { HeroGlassCard } from "@/components/contact-cta/hero-glass-card";
 import { QuickContactCard } from "@/components/contact-cta/quick-contact-card";
 import { ValueCard } from "@/components/contact-cta/value-card";
-import { TrustMetrics } from "@/components/contact-cta/trust-metrics";
 import { ContactInfoPanel } from "@/components/contact-cta/contact-info-panel";
 import { quickContactCards, contactValueCards } from "@/content/contact-cta";
 
@@ -47,8 +46,6 @@ export function ContactCta() {
             ))}
           </div>
         </div>
-
-        <TrustMetrics />
 
         <ContactInfoPanel />
       </Container>

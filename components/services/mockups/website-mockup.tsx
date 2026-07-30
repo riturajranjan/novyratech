@@ -1,18 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ShieldCheck, Smartphone, Zap } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { accentStroke, accentTint } from "@/lib/accent";
 import { easePremium } from "@/lib/motion";
 import type { AccentColor } from "@/content/hero-screens";
 
 const navLinkIds = ["home", "work", "services", "contact"] as const;
-const features = [
-  { id: "fast", icon: Zap },
-  { id: "secure", icon: ShieldCheck },
-  { id: "responsive", icon: Smartphone },
-];
 const quickLinkIds = ["features", "services", "about", "contact"] as const;
 
 /** Full landing-page mockup (browser chrome, navbar, hero, feature cards,
@@ -52,18 +46,38 @@ export function WebsiteMockup({ accent }: { accent: AccentColor }) {
             transition={{ duration: 0.45, ease: easePremium }}
             className="min-w-0 flex-1"
           >
-            <p className="text-body-sm text-foreground truncate font-semibold">
+            <span
+              className="inline-block rounded-full px-2 py-0.5 font-medium tracking-wide uppercase"
+              style={{ fontSize: "10px", color: stroke, backgroundColor: tint(14) }}
+            >
+              {t("mockups.website.hero.badge")}
+            </span>
+            <p
+              className="text-foreground mt-1.5 leading-tight font-semibold whitespace-pre-line"
+              style={{ fontSize: "clamp(14px, 2vw, 22px)" }}
+            >
               {t("mockups.website.hero.title")}
             </p>
-            <p className="text-caption text-foreground-secondary mt-1 truncate">
+            <p
+              className="text-foreground-secondary mt-1 line-clamp-2"
+              style={{ fontSize: "clamp(11px, 1.5vw, 13px)" }}
+            >
               {t("mockups.website.hero.description")}
             </p>
-            <span
-              className="text-caption mt-2 inline-block rounded-full px-3 py-1 font-medium text-white"
-              style={{ backgroundColor: stroke }}
-            >
-              {t("mockups.website.hero.cta")}
-            </span>
+            <div className="mt-2 flex flex-wrap items-center gap-2">
+              <span
+                className="inline-block rounded-full px-3 py-1 font-medium text-white"
+                style={{ backgroundColor: stroke, fontSize: "clamp(10px, 1.2vw, 12px)" }}
+              >
+                {t("mockups.website.hero.cta")}
+              </span>
+              <span
+                className="border-border-subtle inline-block rounded-full border px-3 py-1 font-medium"
+                style={{ fontSize: "clamp(10px, 1.2vw, 12px)" }}
+              >
+                {t("mockups.website.hero.secondaryCta")}
+              </span>
+            </div>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -72,23 +86,6 @@ export function WebsiteMockup({ accent }: { accent: AccentColor }) {
             className="hidden h-16 w-24 shrink-0 rounded-lg sm:block"
             style={{ backgroundColor: tint(20) }}
           />
-        </div>
-
-        <div className="border-border-subtle grid grid-cols-3 gap-2 border-b px-4 py-2.5">
-          {features.map((f, i) => (
-            <motion.div
-              key={f.id}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35, delay: 0.2 + i * 0.06, ease: easePremium }}
-              className="border-border-subtle flex items-center gap-1.5 rounded-md border px-2 py-1.5"
-            >
-              <f.icon className="h-3.5 w-3.5 shrink-0" style={{ color: stroke }} aria-hidden />
-              <span className="text-caption text-foreground-secondary truncate">
-                {t(`mockups.website.features.${f.id}`)}
-              </span>
-            </motion.div>
-          ))}
         </div>
 
         <motion.div
@@ -113,7 +110,7 @@ export function WebsiteMockup({ accent }: { accent: AccentColor }) {
               transition={{ duration: 0.35, delay: 0.42 + i * 0.06, ease: easePremium }}
               className="border-border-subtle rounded-md border py-1.5 text-center"
             >
-              <p className="text-caption text-foreground-secondary truncate">
+              <p className="text-foreground-secondary px-1" style={{ fontSize: "clamp(9px, 1.6vw, 12px)" }}>
                 {t(`mockups.website.quickLinks.${id}`)}
               </p>
             </motion.div>

@@ -40,24 +40,6 @@ export const contactValueCards: ContactValueCard[] = [
   { id: "long-term-partnership", icon: Handshake, accent: "amber" },
 ];
 
-export interface TrustMetric {
-  id: string;
-}
-
-/** Only verifiable, forward-looking facts — a real technology count and
- * real operating commitments (100% custom development, 24h response, full
- * code ownership) — plus a deliberately non-numeric "Growing Portfolio" for
- * project count, since Novyra doesn't have a project history to cite as a
- * number yet. Structural data only — label/value text lives in
- * messages/{locale}/contact.json under `trustMetrics.<id>`. */
-export const trustMetrics: TrustMetric[] = [
-  { id: "projects-planned" },
-  { id: "modern-technologies" },
-  { id: "custom-development" },
-  { id: "average-response-time" },
-  { id: "source-code-ownership" },
-];
-
 export interface ContactDetail {
   id: string;
   icon: LucideIcon;

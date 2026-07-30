@@ -188,11 +188,6 @@
         "services": "Services",
         "contact": "Contact"
       },
-      "features": {
-        "fast": "Fast",
-        "secure": "Secure",
-        "responsive": "Responsive"
-      },
       "quickLinks": {
         "features": "Features",
         "services": "Services",
@@ -200,9 +195,11 @@
         "contact": "Contact"
       },
       "hero": {
-        "title": "Build something remarkable",
-        "description": "Launch a premium web presence in weeks, not months.",
-        "cta": "Get Started"
+        "badge": "Premium Website",
+        "title": "Build Better.\nLaunch Faster.",
+        "description": "Modern websites designed to convert.",
+        "cta": "Start Project",
+        "secondaryCta": "View Work"
       }
     },
     "design": {

@@ -55,13 +55,6 @@
       "description": "हम लॉन्च के बाद भी आपके प्रोडक्ट को सपोर्ट करना जारी रखते हैं।"
     }
   },
-  "trustMetrics": {
-    "projects-planned": { "label": "योजनाबद्ध प्रोजेक्ट", "value": "बढ़ता पोर्टफोलियो" },
-    "modern-technologies": { "label": "आधुनिक तकनीकें", "value": "19" },
-    "custom-development": { "label": "कस्टम डेवलपमेंट", "value": "100%" },
-    "average-response-time": { "label": "औसत प्रतिक्रिया समय", "value": "24 घंटे" },
-    "source-code-ownership": { "label": "सोर्स कोड स्वामित्व", "value": "100%" }
-  },
   "contactDetails": {
     "business-email": { "label": "बिज़नेस ईमेल", "value": "hello@novyratech.in" },
     "phone": { "label": "फ़ोन", "value": "+91 7903724407" },
