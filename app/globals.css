@@ -3,6 +3,8 @@
 :root {
   --background: #FAF7F0;
   --surface: #FFFDF8;
+  --announcement-height: 35px;
+  --header-height: 73px;
 
   --navy-950: #06162A;
   --navy-900: #0A1E35;
@@ -67,16 +69,24 @@ body {
   .shell {
     width: calc(100% - 124px);
   }
+
+  .hero-art img {
+    object-fit: cover;
+    object-position: right top;
+  }
 }
 
 .hero-shell {
   --page-gutter: 62px;
-  --hero-art-left: 505px;
+  --hero-art-left: 400px;
   --hero-art-top: 1px;
-  --hero-art-height: 585px;
+  --hero-art-height: calc(100dvh - var(--announcement-height));
+  display: flex;
+  flex-direction: column;
   position: relative;
-  min-height: 585px;
-  padding: 115px var(--page-gutter) 0;
+  min-height: calc(100vh - var(--announcement-height));
+  min-height: calc(100dvh - var(--announcement-height));
+  padding: 115px var(--page-gutter) 28px;
 }
 
 .hero-art {

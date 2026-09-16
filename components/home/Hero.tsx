@@ -21,7 +21,7 @@ export function Hero() {
         <div className="hero-art">
           <HeroVisual />
         </div>
-        <div className="relative z-10 mt-[8px] max-w-[520px]">
+        <div className="relative z-10 mt-auto max-w-[520px]">
           <ServiceShortcutsRow />
         </div>
       </div>
