@@ -3,7 +3,7 @@ import { ANNOUNCEMENT } from "@/lib/constants";
 
 export function AnnouncementBar() {
   return (
-    <div className="bg-navy-950 text-white/90">
+    <div className="hidden bg-navy-950 text-white/90 md:block">
       <div className="shell flex h-[35px] items-center justify-end gap-[27px] px-4 text-[11px] font-semibold sm:px-6 lg:px-0">
         <div className="flex min-w-0 items-center gap-[13px] truncate">
           <span aria-hidden className="shrink-0">

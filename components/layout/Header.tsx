@@ -11,7 +11,6 @@ import { MobileMenu } from "@/components/layout/MobileMenu";
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [lang, setLang] = useState<"EN" | "HI">("EN");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -22,10 +21,10 @@ export function Header() {
 
   return (
     <header
-      className={`relative z-50 transition-all duration-300 lg:absolute lg:top-[35px] lg:left-0 lg:right-0 ${
+      className={`relative z-50 hidden transition-all duration-300 md:block xl:absolute xl:top-[35px] xl:left-0 xl:right-0 ${
         scrolled
           ? "border-b border-border-soft bg-background/85 shadow-[0_8px_24px_-16px_rgba(7,24,45,0.25)] backdrop-blur-md"
-          : "border-b border-transparent bg-background lg:bg-transparent"
+          : "border-b border-transparent bg-background xl:bg-transparent"
       }`}
     >
       <div className="shell flex h-[73px] items-center px-4 sm:px-6 lg:px-0">
@@ -51,7 +50,7 @@ export function Header() {
           </span>
         </Link>
 
-        <nav aria-label="Primary" className="hidden lg:block">
+        <nav aria-label="Primary" className="hidden xl:block">
           <ul className="flex items-center gap-[34px] text-[13px] font-semibold text-navy-950">
             {NAV_LINKS.map((link) => {
               const active = link.label === "Home";
@@ -80,42 +79,22 @@ export function Header() {
           <button
             type="button"
             aria-label="Search"
-            className="hidden h-10 w-10 items-center justify-center rounded-full text-navy-950 transition-colors hover:bg-navy-900/5 md:inline-flex"
+            className="hidden h-10 w-10 items-center justify-center rounded-full text-navy-950 transition-colors hover:bg-navy-900/5 xl:inline-flex"
           >
             <Search className="h-[20px] w-[20px]" aria-hidden />
           </button>
 
-          <Button href="#contact" variant="dark" size="sm" className="hidden h-11 min-w-[208px] px-6 text-[13px] shadow-[0_10px_20px_-10px_rgba(6,22,42,0.7)] md:inline-flex">
+          <Button href="#contact" variant="dark" size="sm" className="hidden h-11 min-w-[208px] px-6 text-[13px] shadow-[0_10px_20px_-10px_rgba(6,22,42,0.7)] xl:inline-flex">
             Get a Free Consultation
             <span aria-hidden className="text-lg leading-none">→</span>
           </Button>
-
-          <div className="hidden h-[46px] items-center gap-3 rounded-full border border-white/45 bg-white/20 px-5 text-[13px] font-semibold text-navy-950 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.16)] md:flex">
-            <button
-              type="button"
-              onClick={() => setLang("EN")}
-              aria-pressed={lang === "EN"}
-              className={lang === "EN" ? "text-navy-950" : "text-navy-900/50 hover:text-navy-900"}
-            >
-              EN
-            </button>
-            <span className="h-3.5 w-px bg-navy-900/15" aria-hidden />
-            <button
-              type="button"
-              onClick={() => setLang("HI")}
-              aria-pressed={lang === "HI"}
-              className={lang === "HI" ? "text-navy-950" : "text-navy-900/50 hover:text-navy-900"}
-            >
-              HI
-            </button>
-          </div>
 
           <button
             type="button"
             aria-label="Open menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen(true)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-navy-900 transition-colors hover:bg-navy-900/5 lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-navy-900 transition-colors hover:bg-navy-900/5 xl:hidden"
           >
             <Menu className="h-5 w-5" aria-hidden />
           </button>
