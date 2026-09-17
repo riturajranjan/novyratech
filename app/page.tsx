@@ -7,6 +7,7 @@ import { WhatWeDo } from "@/components/home/WhatWeDo";
 import { WhyNovyra } from "@/components/home/WhyNovyra";
 import { SelectedWork } from "@/components/home/SelectedWork";
 import { HowWeWork } from "@/components/home/HowWeWork";
+import { Pricing } from "@/components/home/Pricing";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <WhyNovyra />
         <SelectedWork />
         <HowWeWork />
+        <Pricing />
       </main>
       <MobileBottomNav />
     </>
