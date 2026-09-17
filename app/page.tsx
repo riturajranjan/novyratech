@@ -4,6 +4,9 @@ import { Hero } from "@/components/home/Hero";
 import { Industries } from "@/components/home/Industries";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { WhatWeDo } from "@/components/home/WhatWeDo";
+import { WhyNovyra } from "@/components/home/WhyNovyra";
+import { SelectedWork } from "@/components/home/SelectedWork";
+import { HowWeWork } from "@/components/home/HowWeWork";
 
 export default function Home() {
   return (
@@ -14,6 +17,9 @@ export default function Home() {
         <Hero />
         <Industries />
         <WhatWeDo />
+        <WhyNovyra />
+        <SelectedWork />
+        <HowWeWork />
       </main>
       <MobileBottomNav />
     </>

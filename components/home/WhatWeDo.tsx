@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { type CSSProperties, useEffect, useRef, useState } from "react";
+import { type CSSProperties, type PointerEvent as ReactPointerEvent, useEffect, useRef, useState } from "react";
 import {
+  ArrowLeft,
   ArrowRight,
   BarChart3,
   Bot,
@@ -49,6 +50,11 @@ type ServiceItem = {
   accent: string;
   visual: string;
   visualAlt: string;
+  mobileDescription: string;
+  mobileChips: [string, string, string];
+  mobileObjectPosition: string;
+  mobileAccent: string;
+  mobileTitle: [string, string];
   features: Feature[];
 };
 
@@ -66,6 +72,11 @@ const SERVICES: ServiceItem[] = [
     accent: "#ff6b35",
     visual: "/images/services/website-development.webp",
     visualAlt: "Premium laptop and smartphone showing a responsive modern website",
+    mobileDescription: "Build trust online with a fast, modern website.",
+    mobileChips: ["Responsive", "SEO Ready", "Modern UI"],
+    mobileObjectPosition: "58% center",
+    mobileAccent: "#f36f45",
+    mobileTitle: ["Website Design", "& Development"],
     features: [
       { label: "Websites That Perform", icon: Zap, tone: "orange" },
       { label: "Mobile Responsive", icon: Smartphone, tone: "green" },
@@ -87,6 +98,11 @@ const SERVICES: ServiceItem[] = [
     accent: "#1768c5",
     visual: "/images/services/saas-web-applications.webp",
     visualAlt: "Premium laptop showing a modern SaaS dashboard and workflow product",
+    mobileDescription: "Custom solutions to streamline and scale your business.",
+    mobileChips: ["Scalable", "API Integration", "Cloud Ready"],
+    mobileObjectPosition: "62% center",
+    mobileAccent: "#347ae2",
+    mobileTitle: ["SaaS & Web", "Applications"],
     features: [
       { label: "Scalable Architecture", icon: Boxes, tone: "blue" },
       { label: "Responsive Product", icon: Smartphone, tone: "green" },
@@ -108,6 +124,11 @@ const SERVICES: ServiceItem[] = [
     accent: "#13a072",
     visual: "/images/services/ai-automation.webp",
     visualAlt: "Premium laptop showing an AI automation workspace for business workflows",
+    mobileDescription: "Automate repetitive work with smarter digital workflows.",
+    mobileChips: ["Automation", "AI Workflows", "Smart Tools"],
+    mobileObjectPosition: "58% center",
+    mobileAccent: "#16a36f",
+    mobileTitle: ["AI &", "Automation"],
     features: [
       { label: "AI Workflows", icon: Workflow, tone: "green" },
       { label: "Automation", icon: Bot, tone: "blue" },
@@ -129,6 +150,11 @@ const SERVICES: ServiceItem[] = [
     accent: "#ff6b35",
     visual: "/images/services/digital-marketing.webp",
     visualAlt: "Premium laptop showing a digital marketing analytics workspace",
+    mobileDescription: "Get found, build trust and reach more customers.",
+    mobileChips: ["SEO", "Social Media", "Paid Campaigns"],
+    mobileObjectPosition: "60% center",
+    mobileAccent: "#49a65a",
+    mobileTitle: ["Digital Marketing", "& SEO"],
     features: [
       { label: "SEO", icon: Search, tone: "blue" },
       { label: "Social Media", icon: Megaphone, tone: "orange" },
@@ -150,6 +176,11 @@ const SERVICES: ServiceItem[] = [
     accent: "#1454a8",
     visual: "/images/services/ui-ux-branding.webp",
     visualAlt: "Premium creative workspace showing UI UX and branding screens",
+    mobileDescription: "Creative experiences that make your brand stand out.",
+    mobileChips: ["Brand Identity", "UI/UX Design", "Creative Assets"],
+    mobileObjectPosition: "56% center",
+    mobileAccent: "#7458e8",
+    mobileTitle: ["UI/UX &", "Branding"],
     features: [
       { label: "User Research", icon: Search, tone: "blue" },
       { label: "Responsive UI", icon: MonitorSmartphone, tone: "green" },
@@ -171,6 +202,11 @@ const SERVICES: ServiceItem[] = [
     accent: "#137a43",
     visual: "/images/services/custom-business-software.webp",
     visualAlt: "Premium laptop showing a custom business operations software dashboard",
+    mobileDescription: "Software built around the way your business works.",
+    mobileChips: ["Custom Built", "Secure", "Scalable"],
+    mobileObjectPosition: "56% center",
+    mobileAccent: "#156bc1",
+    mobileTitle: ["Custom Business", "Software"],
     features: [
       { label: "Custom Workflows", icon: Workflow, tone: "green" },
       { label: "Role Management", icon: Lock, tone: "indigo" },
@@ -183,14 +219,68 @@ const SERVICES: ServiceItem[] = [
 
 export function WhatWeDo() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [mobileIndex, setMobileIndex] = useState(0);
+  const [slideDirection, setSlideDirection] = useState<"next" | "previous">("next");
+  const [sliderVisible, setSliderVisible] = useState(false);
+  const [pageVisible, setPageVisible] = useState(true);
   const hoverTimer = useRef<number | null>(null);
+  const mobileSliderRef = useRef<HTMLDivElement>(null);
+  const pointerStartX = useRef(0);
+  const pointerStartY = useRef(0);
+  const reducedMotion = useRef(false);
   const active = SERVICES[activeIndex];
+  const mobileService = SERVICES[mobileIndex];
 
   useEffect(() => () => {
     if (hoverTimer.current) {
       window.clearTimeout(hoverTimer.current);
     }
   }, []);
+
+  useEffect(() => {
+    reducedMotion.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const handleVisibility = () => setPageVisible(!document.hidden);
+    handleVisibility();
+    document.addEventListener("visibilitychange", handleVisibility);
+    const slider = mobileSliderRef.current;
+    if (!slider) return () => document.removeEventListener("visibilitychange", handleVisibility);
+    const observer = new IntersectionObserver(
+      ([entry]) => setSliderVisible(entry.isIntersecting && entry.intersectionRatio >= 0.4),
+      { threshold: [0, 0.4, 0.75] },
+    );
+    observer.observe(slider);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!sliderVisible || !pageVisible || reducedMotion.current) return;
+    const timer = window.setTimeout(() => {
+      setSlideDirection("next");
+      setMobileIndex((index) => (index + 1) % SERVICES.length);
+    }, 5000);
+    return () => window.clearTimeout(timer);
+  }, [mobileIndex, pageVisible, sliderVisible]);
+
+  const showMobileService = (index: number, direction?: "next" | "previous") => {
+    setSlideDirection(direction ?? (index > mobileIndex ? "next" : "previous"));
+    setMobileIndex((index + SERVICES.length) % SERVICES.length);
+  };
+
+  const handleMobilePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    pointerStartX.current = event.clientX;
+    pointerStartY.current = event.clientY;
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const handleMobilePointerUp = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const deltaX = event.clientX - pointerStartX.current;
+    const deltaY = event.clientY - pointerStartY.current;
+    if (Math.abs(deltaX) < 45 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+    showMobileService(mobileIndex + (deltaX < 0 ? 1 : -1), deltaX < 0 ? "next" : "previous");
+  };
 
   const scheduleHover = (index: number) => {
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
@@ -238,14 +328,84 @@ export function WhatWeDo() {
           <span />
         </div>
         <h2>
-          Digital solutions built
-          <br />
-          for <span className="text-blue-700">real business</span>{" "}
-          <span className="text-green-700">growth.</span>
+          <span className="wwd-mobile-heading-line">Digital solutions built</span><br className="wwd-desktop-heading-break" />
+          <span className="wwd-mobile-heading-line">for <span className="text-blue-700">real business</span>{" "}<span className="text-green-700">growth.</span></span>
         </h2>
         <p>
           From your first website to a complete business platform, we build technology around what your business actually needs.
         </p>
+      </div>
+
+      <div
+        ref={mobileSliderRef}
+        className="wwd-mobile-services"
+        aria-label="Our services"
+        aria-live="polite"
+        tabIndex={0}
+        style={{ "--service-accent": mobileService.mobileAccent } as CSSProperties}
+        onPointerDown={handleMobilePointerDown}
+        onPointerUp={handleMobilePointerUp}
+        onKeyDown={(event) => {
+          if (event.key === "ArrowLeft") showMobileService(mobileIndex - 1, "previous");
+          if (event.key === "ArrowRight") showMobileService(mobileIndex + 1, "next");
+        }}
+      >
+        <article
+          key={mobileService.id}
+          className="wwd-mobile-card"
+          data-direction={slideDirection}
+          style={{ "--service-accent": mobileService.mobileAccent } as CSSProperties}
+        >
+          <div className="wwd-mobile-visual">
+            <Image
+              src={mobileService.visual}
+              alt={mobileService.visualAlt}
+              fill
+              sizes="(max-width: 767px) min(100vw - 32px, 420px), 1px"
+              style={{ objectPosition: mobileService.mobileObjectPosition }}
+              className="wwd-mobile-image"
+            />
+            <span className="wwd-mobile-image-fade" aria-hidden />
+          </div>
+          <div className="wwd-mobile-copy">
+            <div className="wwd-mobile-kicker"><span />{mobileService.number} / 06</div>
+            <h3>{mobileService.mobileTitle[0]}<br />{mobileService.mobileTitle[1]}</h3>
+            <p>{mobileService.mobileDescription}</p>
+            <div className="wwd-mobile-chips" aria-label={`${mobileService.title} capabilities`}>
+              {mobileService.mobileChips.map((chip) => <span key={chip}>{chip}</span>)}
+            </div>
+            <Link href={mobileService.href} className="wwd-mobile-learn">
+              Explore Service <ArrowRight />
+            </Link>
+          </div>
+        </article>
+
+        <div className="wwd-mobile-slider-nav">
+          <button type="button" aria-label="Previous service" onClick={() => showMobileService(mobileIndex - 1, "previous")}>
+            <ArrowLeft aria-hidden />
+          </button>
+          <div className="wwd-mobile-dots" aria-label={`Service ${mobileIndex + 1} of ${SERVICES.length}`}>
+            {SERVICES.map((service, index) => (
+              <button
+                key={service.id}
+                type="button"
+                aria-label={`Go to ${service.title}`}
+                aria-current={index === mobileIndex ? "true" : undefined}
+                onClick={() => showMobileService(index)}
+              />
+            ))}
+          </div>
+          <button
+            key={`next-${mobileIndex}`}
+            type="button"
+            aria-label="Next service"
+            className="wwd-mobile-next"
+            onClick={() => showMobileService(mobileIndex + 1, "next")}
+          >
+            <span className="wwd-mobile-progress" aria-hidden />
+            <ArrowRight aria-hidden />
+          </button>
+        </div>
       </div>
 
       <div className="wwd-showcase">

@@ -14,13 +14,19 @@ import {
   ArrowRight,
   ArrowUpRight,
   BedDouble,
+  Building2,
   ChevronLeft,
   ChevronRight,
   Dumbbell,
   GraduationCap,
   HeartPulse,
+  Leaf,
+  MapPin,
+  Settings2,
+  ShieldCheck,
   Store,
   TrendingUp,
+  Users,
 } from "lucide-react";
 
 const INDUSTRIES = [
@@ -35,6 +41,7 @@ const INDUSTRIES = [
     lineClass: "bg-blue-200",
     glow: "rgba(20,84,168,0.08)",
     objectPosition: "center 35%",
+    chips: ["School Websites", "Admissions", "LMS"],
   },
   {
     number: "02",
@@ -47,6 +54,7 @@ const INDUSTRIES = [
     lineClass: "bg-cyan-200",
     glow: "rgba(18,188,196,0.08)",
     objectPosition: "center 28%",
+    chips: ["Hospital Websites", "Appointments", "Patient Experience"],
   },
   {
     number: "03",
@@ -59,6 +67,7 @@ const INDUSTRIES = [
     lineClass: "bg-saffron-100",
     glow: "rgba(245,106,36,0.08)",
     objectPosition: "center 40%",
+    chips: ["E-commerce", "Branding", "POS"],
   },
   {
     number: "04",
@@ -71,6 +80,7 @@ const INDUSTRIES = [
     lineClass: "bg-blue-200",
     glow: "rgba(23,104,197,0.08)",
     objectPosition: "center center",
+    chips: ["Hotel Websites", "Bookings", "Guest Experience"],
   },
   {
     number: "05",
@@ -83,6 +93,7 @@ const INDUSTRIES = [
     lineClass: "bg-amber-200",
     glow: "rgba(245,184,38,0.08)",
     objectPosition: "center center",
+    chips: ["Business Platforms", "Analytics", "Automation"],
   },
   {
     number: "06",
@@ -95,6 +106,7 @@ const INDUSTRIES = [
     lineClass: "bg-green-200",
     glow: "rgba(19,122,67,0.08)",
     objectPosition: "center 28%",
+    chips: ["Gym Websites", "Memberships", "Lead Generation"],
   },
 ] as const;
 
@@ -121,6 +133,7 @@ export function Industries() {
   const lastDragX = useRef(0);
   const draggedRef = useRef(false);
   const reducedMotionRef = useRef(false);
+  const resumeTimerRef = useRef<number | null>(null);
 
   const activeIndex = getLogicalIndex(activeRenderIndex);
   const activeIndustry = INDUSTRIES[activeIndex];
@@ -165,6 +178,18 @@ export function Industries() {
 
   useEffect(() => {
     reducedMotionRef.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    return () => {
+      if (resumeTimerRef.current) window.clearTimeout(resumeTimerRef.current);
+    };
+  }, []);
+
+  const pauseAfterInteraction = useCallback(() => {
+    setIsPaused(true);
+    if (resumeTimerRef.current) window.clearTimeout(resumeTimerRef.current);
+    resumeTimerRef.current = window.setTimeout(() => {
+      resumeTimerRef.current = null;
+      setIsPaused(false);
+    }, 7000);
   }, []);
 
   useEffect(() => {
@@ -200,6 +225,7 @@ export function Industries() {
   }, [isDragging, isPaused, activeRenderIndex]);
 
   const goTo = useCallback((logicalIndex: number) => {
+    pauseAfterInteraction();
     setActiveRenderIndex((current) => {
       const candidates = [
         logicalIndex,
@@ -211,15 +237,17 @@ export function Industries() {
         Math.abs(candidate - current) < Math.abs(best - current) ? candidate : best
       ));
     });
-  }, []);
+  }, [pauseAfterInteraction]);
 
   const goPrevious = useCallback(() => {
+    pauseAfterInteraction();
     setActiveRenderIndex((index) => index - 1);
-  }, []);
+  }, [pauseAfterInteraction]);
 
   const goNext = useCallback(() => {
+    pauseAfterInteraction();
     setActiveRenderIndex((index) => index + 1);
-  }, []);
+  }, [pauseAfterInteraction]);
 
   const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
     if (event.button !== 0) {
@@ -227,7 +255,7 @@ export function Industries() {
     }
 
     setIsDragging(true);
-    setIsPaused(true);
+    pauseAfterInteraction();
     setDragOffset(0);
     draggedRef.current = false;
     dragStartX.current = event.clientX;
@@ -265,7 +293,6 @@ export function Industries() {
       goPrevious();
     }
 
-    window.setTimeout(() => setIsPaused(false), 80);
   };
 
   const getSlidePosition = (renderIndex: number) => {
@@ -297,7 +324,7 @@ export function Industries() {
   };
 
   return (
-    <section id="industries" className="relative overflow-hidden bg-background py-12 md:py-14">
+    <section id="industries" className="industries-section relative overflow-hidden bg-background py-12 md:py-14">
       <div
         aria-hidden
         className="pointer-events-none absolute -left-28 -top-24 h-96 w-96 rounded-[48%_52%_58%_42%] bg-green-100/45 blur-2xl"
@@ -324,9 +351,9 @@ export function Industries() {
         <path d="M306 88V72M330 88V64M354 88V60M378 88V66M402 88V76" stroke="currentColor" strokeWidth="2" />
       </svg>
 
-      <div className="relative mx-auto w-[calc(100%_-_32px)] max-w-[1880px] md:w-[calc(100%_-_64px)]">
-        <div className="relative mx-auto max-w-[1180px] text-center">
-          <div className="flex items-center justify-center gap-5">
+      <div className="industries-shell relative mx-auto w-[calc(100%_-_32px)] max-w-[1880px] md:w-[calc(100%_-_64px)]">
+        <div className="industries-header relative mx-auto max-w-[1180px] text-center">
+          <div className="industries-eyebrow flex items-center justify-center gap-5">
             <span className="h-px w-13 bg-saffron-500/32" aria-hidden />
             <p className="text-[12px] font-extrabold uppercase tracking-[0.28em] text-navy-950/62">
               Our Industries
@@ -334,12 +361,12 @@ export function Industries() {
             <span className="h-px w-13 bg-saffron-500/32" aria-hidden />
           </div>
 
-          <h2 className="mt-5 text-[clamp(2.35rem,3vw,3.25rem)] font-extrabold leading-[1.05] tracking-[-0.045em] text-navy-950">
-            Building Digital India, <span className="text-blue-700">One Industry</span>{" "}
+          <h2 className="industries-heading mt-5 text-[clamp(2.35rem,3vw,3.25rem)] font-extrabold leading-[1.05] tracking-[-0.045em] text-navy-950">
+            <span className="industries-heading-first">Building Digital India,</span>{" "}<span className="text-blue-700">One Industry</span>{" "}
             <span className="text-green-700">at a Time.</span>
           </h2>
 
-          <p className="mx-auto mt-4 max-w-[860px] text-[15px] font-semibold leading-[1.5] text-text-secondary md:text-base">
+          <p className="industries-description mx-auto mt-4 max-w-[860px] text-[15px] font-semibold leading-[1.5] text-text-secondary md:text-base">
             From education to healthcare, we create digital solutions for real-world businesses, especially in tier 2 &amp; tier 3 cities.
           </p>
         </div>
@@ -372,7 +399,9 @@ export function Industries() {
             className={`industry-viewport ${isDragging ? "is-dragging" : ""}`}
             tabIndex={0}
             onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
+            onMouseLeave={() => {
+              if (!resumeTimerRef.current) setIsPaused(false);
+            }}
             onFocus={() => setIsPaused(true)}
             onBlur={() => setIsPaused(false)}
             onKeyDown={(event) => {
@@ -477,6 +506,9 @@ export function Industries() {
                       </div>
                       <h3>{industry.title}</h3>
                       <p>{industry.description}</p>
+                      <div className="industry-chips" aria-label={`${industry.title} services`}>
+                        {industry.chips.map((chip) => <span key={chip}>{chip}</span>)}
+                      </div>
                       <Link
                         href="/industries"
                         className="industry-card-link"
@@ -508,11 +540,50 @@ export function Industries() {
 
         </div>
 
-        <div className="relative z-10 mt-7 flex justify-center">
+        <div className="industry-indicator" aria-label={`Industry ${activeIndex + 1} of ${INDUSTRIES.length}`}>
+          {INDUSTRIES.map((industry, index) => (
+            <button
+              key={industry.title}
+              type="button"
+              aria-label={`Show ${industry.title}`}
+              aria-current={index === activeIndex ? "true" : undefined}
+              onClick={() => goTo(index)}
+            />
+          ))}
+        </div>
+
+        <div className="industry-bottom-cta-wrap relative z-10 mt-7 flex justify-center">
           <Link href="/industries" className="industry-bottom-cta group">
             Explore All Industries
             <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-[5px]" aria-hidden />
           </Link>
+        </div>
+
+        <div className="industry-mobile-benefits" aria-label="Our impact">
+          {[
+            [Building2, "Diverse Industries", "blue"],
+            [Users, "Local Businesses", "green"],
+            [TrendingUp, "Real Impact", "orange"],
+          ].map(([BenefitIcon, label, tone]) => (
+            <div key={label as string}>
+              <span data-tone={tone as string}><BenefitIcon aria-hidden /></span>
+              <strong>{label as string}</strong>
+            </div>
+          ))}
+        </div>
+
+        <div className="industry-tablet-benefits" aria-label="Why businesses choose Novyra">
+          {[
+            [Settings2, "Modern Solutions", "blue"],
+            [ShieldCheck, "Trusted Partnership", "green"],
+            [MapPin, "Local Focus", "orange"],
+            [Leaf, "Sustainable Growth", "green"],
+          ].map(([BenefitIcon, label, tone]) => (
+            <div key={label as string}>
+              <span data-tone={tone as string}><BenefitIcon aria-hidden /></span>
+              <strong>{label as string}</strong>
+            </div>
+          ))}
         </div>
 
         <div className="relative z-10 mt-8 flex items-center justify-center gap-7 text-[10px] font-extrabold uppercase tracking-[0.32em] text-navy-950/45">
