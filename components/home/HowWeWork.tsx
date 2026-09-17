@@ -69,7 +69,7 @@ export function HowWeWork() {
 
           <div id="process-journey" className="process-journey">
             <div className="process-desktop-art">
-              <Image src="/images/how-we-work/process-journey-desktop.webp" alt="A winding miniature landscape illustrating discovery, design, development, launch and growth" fill sizes="(min-width: 1024px) 62vw, 0px" />
+              <Image src="/images/how-we-work/process-journey.png" alt="A winding miniature landscape illustrating discovery, design, development, launch and growth" fill sizes="(min-width: 1024px) 58vw, 0px" loading="eager" />
               {PROCESS_STAGES.map(({ number, title, desktopDescription, tone, icon: Icon }) => (
                 <article key={number} className={`process-stage process-stage-${number}`} data-tone={tone}>
                   <Icon aria-hidden />
@@ -81,7 +81,7 @@ export function HowWeWork() {
             </div>
 
             <div className="process-mobile-art">
-              <Image src="/images/how-we-work/process-journey-mobile.webp" alt="An illuminated winding mountain road representing Novyra's five-stage project process" fill sizes="(max-width: 767px) calc(100vw - 28px), 620px" />
+              <Image src="/images/how-we-work/process-journey-mobile.png" alt="A vertical miniature landscape illustrating Novyra's five-stage project process" fill sizes="(max-width: 767px) calc(100vw - 28px), 620px" loading="eager" />
               {PROCESS_STAGES.map(({ number, title, mobileDescription, tone, icon: Icon }, index) => (
                 <motion.article
                   key={number}
