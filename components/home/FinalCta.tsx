@@ -45,7 +45,7 @@ export function FinalCta() {
           <p>Whether you’re starting small, improving an existing business, or building<br className="final-cta-desktop-break" /> something ambitious — let’s find the right way forward together.</p>
         </motion.header>
 
-        <p className="final-cta-note final-cta-note-right" aria-hidden>No pressure.<br />No complicated<br />process.<i /></p>
+        {/* <p className="final-cta-note final-cta-note-right" aria-hidden>No pressure.<br />No complicated<br />process.<i /></p> */}
 
         <motion.div className="final-cta-visual" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: .2 }} transition={{ duration: .48 }}>
           <Image src="/images/final-cta/build-together-desktop.webp" alt="Business professionals discussing a digital project together in a modern workspace" fill sizes="(max-width: 1532px) calc(100vw - 32px), 1500px" />
@@ -59,12 +59,12 @@ export function FinalCta() {
           <ConversationSheet mobile />
         </div>
 
-        <div className="final-cta-lower">
+        {/* <div className="final-cta-lower">
           <div className="final-cta-chapter-note" aria-hidden>Your next chapter<br />could start here.<i /><ArrowRight /></div>
-        </div>
+        </div> */}
       </div>
 
-      <div className="final-cta-plant" aria-hidden><Image src="/images/final-cta/final-cta-plant.png" alt="" fill sizes="(max-width: 767px) 180px, 300px" /></div>
+      {/* <div className="final-cta-plant" aria-hidden><Image src="/images/final-cta/final-cta-plant.png" alt="" fill sizes="(max-width: 767px) 180px, 300px" /></div> */}
     </section>
   );
 }

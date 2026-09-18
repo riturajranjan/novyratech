@@ -226,10 +226,10 @@ export function ClientStories() {
         </div>
       </div>
 
-      <div className="stories-desk-scene" aria-hidden>
+      {/* <div className="stories-desk-scene" aria-hidden>
         <p className="stories-ahead-note">More<br />Success Stories<br />Ahead...<i /></p>
         <Image src="/images/client-stories/client-stories-desk.png" alt="" fill sizes="100vw" />
-      </div>
+      </div> */}
     </section>
   );
 }

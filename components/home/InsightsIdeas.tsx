@@ -218,10 +218,10 @@ export function InsightsIdeas() {
           <Link className="insights-mobile-explore" href="/blog">Explore All Insights <ArrowRight aria-hidden /></Link>
         </div>
       </div>
-
+{/* 
       <div className="insights-desk-scene" aria-hidden>
         <Image src="/images/insights/insights-desk-scene.png" alt="" fill sizes="100vw" />
-      </div>
+      </div> */}
     </section>
   );
 }

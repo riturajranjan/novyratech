@@ -134,9 +134,9 @@ export function Pricing() {
           <Link href="#contact">Talk to Our Team <ArrowRight aria-hidden /></Link>
         </aside>
       </div>
-      <div className="pricing-desk-scene" aria-hidden>
+      {/* <div className="pricing-desk-scene" aria-hidden>
         <Image src="/images/pricing/pricing-desk-scene.webp" alt="" fill sizes="100vw" />
-      </div>
+      </div> */}
     </section>
   );
 }
