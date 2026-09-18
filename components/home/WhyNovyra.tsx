@@ -124,9 +124,6 @@ export function WhyNovyra() {
               <p>Great technology builds businesses. Stronger partnerships build what’s next.</p>
               <small>Built around meaningful collaboration</small>
             </blockquote>
-            <p className="why-handwritten why-handwritten-right" aria-hidden>
-              Let&apos;s create<br />what&apos;s next.<i />
-            </p>
           </div>
         </div>
 

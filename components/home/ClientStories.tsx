@@ -124,7 +124,6 @@ export function ClientStories() {
         </header>
 
         <p className="stories-note stories-note-left" aria-hidden>Good Work<br />Starts With<br />Listening.<i /></p>
-        <p className="stories-note stories-note-right" aria-hidden>Real People.<br />Real Businesses.<br />Real Growth.<i /></p>
 
         <div className="stories-desktop">
           <AnimatePresence mode="wait" initial={false}>
@@ -188,7 +187,6 @@ export function ClientStories() {
         </div>
 
         <div className="stories-mobile">
-          <p className="stories-mobile-note" aria-hidden>Good Work Starts<br />With Listening.<i /></p>
           <AnimatePresence mode="wait" initial={false}>
             <motion.div key={activeStory.id} initial={{ opacity: 0, x: 8 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -8 }} transition={{ duration: .22 }}>
               <div className="stories-mobile-photo">
@@ -225,7 +223,6 @@ export function ClientStories() {
               </button>
             ))}
           </div>
-          <p className="stories-mobile-closing" aria-hidden>Real Businesses.<br />Brighter Tomorrows.<i /></p>
         </div>
       </div>
 

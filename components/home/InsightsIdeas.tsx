@@ -130,13 +130,11 @@ function FeaturedArticle({ article }: { article: InsightArticle }) {
         <span><Star aria-hidden /> FEATURED ARTICLE</span>
         <div><small><CalendarDays aria-hidden />{article.publishedAt}</small><i /><small><Clock3 aria-hidden />{article.readTime}</small></div>
       </div>
-      <p className="insights-featured-note" aria-hidden>From<br />Ideas<br />to Impact<i /></p>
       <div className="insights-featured-copy">
         <h3>{article.title}</h3>
         <p>{article.excerpt}</p>
         <div className="insights-featured-actions">
           <Link href={article.href}>Read Full Article <ArrowRight aria-hidden /></Link>
-          <span><LineChart aria-hidden /><b>Real Strategies<br />Real Results</b></span>
         </div>
       </div>
     </article>
@@ -176,9 +174,6 @@ export function InsightsIdeas() {
           <h2><span>Ideas <em>Worth Sharing.</em></span><span>Knowledge That <b>Helps You Grow.</b></span></h2>
           <p>Practical insights on websites, AI, SaaS, digital growth and building better businesses.</p>
         </header>
-
-        <p className="insights-note insights-note-left" aria-hidden>Learn.<br />Build.<br />Grow.<i /></p>
-        <p className="insights-note insights-note-right" aria-hidden>Fresh<br />Perspectives.<br />Real Progress.<i /></p>
 
         <div className="insights-desktop-tablet">
           <InsightFilters active={activeCategory} onChange={setActiveCategory} />
@@ -225,10 +220,8 @@ export function InsightsIdeas() {
       </div>
 
       <div className="insights-desk-scene" aria-hidden>
-        <p>Small Ideas.<br />Big Possibilities.<i /></p>
         <Image src="/images/insights/insights-desk-scene.png" alt="" fill sizes="100vw" />
       </div>
-      <p className="insights-mobile-closing" aria-hidden>Keep Learning.<br />Keep Growing.<i /></p>
     </section>
   );
 }

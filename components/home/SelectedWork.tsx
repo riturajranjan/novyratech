@@ -158,13 +158,13 @@ export function SelectedWork() {
           <header className="work-intro">
           <div className="work-eyebrow"><span />SELECTED WORK<span /></div>
           <h2 className="work-desktop-title">
-            <span>Real Problems.</span>
-            <span className="work-blue">Real Solutions.</span>
-            <span className="work-green">Real Impact.</span>
+            <span>Work We&apos;re</span>
+            <span className="work-blue">Proud</span>
+            <span className="work-green">to Ship.</span>
           </h2>
           <h2 className="work-mobile-title">
-            <span>Real Solutions</span>
-            <span>for <em>Real Businesses.</em></span>
+            <span>Work We&apos;re</span>
+            <span>Proud <em>to Ship.</em></span>
           </h2>
           <p className="work-desktop-copy">From schools and hospitals to startups and growing businesses — we build digital products that solve real problems and create lasting value.</p>
           <p className="work-mobile-copy">From schools and hospitals to startups — we build digital products that create lasting impact.</p>
@@ -210,7 +210,6 @@ export function SelectedWork() {
             </article>
           </div>
           <svg className="work-story-path" viewBox="0 0 650 90" preserveAspectRatio="none" aria-hidden><path d="M20 20 C180 92 445 88 620 18" /><path d="m610 12 12 6-9 10" /></svg>
-          <p className="work-handwritten" aria-hidden>Building ideas for a<br />better tomorrow.<i /></p>
           </div>
         </div>
 
@@ -248,15 +247,14 @@ export function SelectedWork() {
             ))}
           </div>
           <div className="work-mobile-end">
-            <p aria-hidden>Different ideas.<br />A brighter tomorrow.<i /></p>
             <Link href="/work">View All Projects <ArrowRight aria-hidden /></Link>
           </div>
         </div>
 
         <aside className="work-impact-strip">
           <div className="work-impact-orbit" aria-hidden><span /></div>
-          <strong>Different Businesses.<br />A Brighter India.</strong>
-          <p><b aria-hidden>“</b>We work with visionary businesses to build digital solutions that create opportunities, empower people and shape a better tomorrow.</p>
+          <strong>Built for Businesses<br />Across India.</strong>
+          <p><b aria-hidden>“</b>From local shops to fast-scaling brands, we build technology that helps real businesses serve more customers and run better.</p>
           <Link href="#contact">Start Your Project <ArrowRight aria-hidden /></Link>
         </aside>
       </div>

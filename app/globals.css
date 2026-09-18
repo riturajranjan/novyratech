@@ -742,7 +742,7 @@
 
 .footer-story {
   position: relative;
-  height: clamp(320px, 25vw, 390px);
+  height: clamp(320px, 23vw, 360px);
   overflow: hidden;
   background: #102b4d;
 }
@@ -757,7 +757,7 @@
 
 .footer-story picture > img {
   object-fit: cover;
-  object-position: center 53%;
+  object-position: center 62%;
 }
 
 .footer-story::after {
@@ -1070,8 +1070,8 @@
 }
 
 @media (max-width: 767px) {
-  .site-footer { padding-bottom: calc(var(--mobile-bottom-nav-height) + env(safe-area-inset-bottom)); }
-  .footer-story { height: clamp(300px, 86vw, 350px); }
+  .site-footer { padding-bottom: calc(var(--mobile-bottom-nav-height) + 20px + env(safe-area-inset-bottom)); }
+  .footer-story { height: clamp(290px, 80vw, 330px); }
   .footer-story picture > img { object-position: center 58%; }
   .footer-story::after { background: linear-gradient(180deg, rgba(2, 16, 34, .04), rgba(2, 16, 34, .17)); }
 
@@ -3495,7 +3495,7 @@ body {
   }
 
   body {
-    padding-bottom: 106px;
+    padding-bottom: 0;
   }
 
   .hero-shell {

@@ -91,7 +91,6 @@ export function Pricing() {
           <p>Flexible plans for businesses at every stage — from a simple online presence<br className="pricing-desktop-break" /> to powerful digital platforms.</p>
         </header>
 
-        <p className="pricing-note pricing-note-left" aria-hidden>Good<br />Businesses<br />Grow Online<i /></p>
         <p className="pricing-note pricing-note-right" aria-hidden>Different<br />Stages.<br />Same Partner.<i /></p>
 
         <div className="pricing-stage-desktop">
@@ -100,7 +99,6 @@ export function Pricing() {
         </div>
 
         <div className="pricing-mobile-ui">
-          <p className="pricing-note pricing-mobile-note" aria-hidden>Good Businesses<br />Grow Online<i /></p>
           <div className="pricing-tabs" role="tablist" aria-label="Choose a pricing plan">
             {MOBILE_PLANS.map((plan) => (
               <button key={plan.id} type="button" role="tab" aria-selected={activeId === plan.id} onClick={() => setActiveId(plan.id)}>{plan.tab}</button>
@@ -124,7 +122,6 @@ export function Pricing() {
             <span><i><ShieldCheck aria-hidden /></i><b>No Hidden<br />Costs</b></span>
             <span><i><Handshake aria-hidden /></i><b>Ongoing<br />Support</b></span>
           </div>
-          <p className="pricing-mobile-closing" aria-hidden>Let’s Build What’s Next<i /></p>
         </div>
 
         <aside className="pricing-consultation">

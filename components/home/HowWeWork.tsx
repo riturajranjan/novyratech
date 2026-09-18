@@ -63,8 +63,6 @@ export function HowWeWork() {
             <div className="process-trust-points">
               {TRUST_POINTS.map(({ label, icon: Icon, tone }) => <span key={tone} data-tone={tone}><i><Icon aria-hidden /></i><b>{label}</b></span>)}
             </div>
-            <p className="process-note process-note-left" aria-hidden>Good ideas<br />deserve great<br />execution.<i /></p>
-            <p className="process-note process-note-mobile" aria-hidden>Ideas today<br />Impact tomorrow.<i /></p>
           </div>
 
           <div id="process-journey" className="process-journey">
@@ -76,8 +74,6 @@ export function HowWeWork() {
                   <div><span>{number}</span><h3>{title}</h3><p>{desktopDescription}</p></div>
                 </article>
               ))}
-              <p className="process-note process-note-top" aria-hidden>Ideas<br />Conversations<br />Opportunities<i /></p>
-              <p className="process-note process-note-bottom" aria-hidden>Turning<br />Ideas into<br />Impact<i /></p>
             </div>
 
             <div className="process-mobile-art">
@@ -96,7 +92,6 @@ export function HowWeWork() {
                   <div><span>{number}</span><h3>{title}</h3><p>{mobileDescription}</p></div>
                 </motion.article>
               ))}
-              <div className="process-brighter-sign">A Brighter<br />Tomorrow</div>
               <div className="process-mobile-proof">
                 {TRUST_POINTS.map(({ label, icon: Icon, tone }) => <span key={tone} data-tone={tone}><i><Icon aria-hidden /></i><b>{label}</b></span>)}
               </div>
@@ -111,8 +106,8 @@ export function HowWeWork() {
           </div>
           <div className="process-approach-copy">
             <div className="process-approach-eyebrow"><span />OUR APPROACH<span /></div>
-            <h3>Real Collaboration.<br />Real Progress.</h3>
-            <p>We work as an extension of your team, combining strategy, design and technology to create solutions that deliver long-term value.</p>
+            <h3>We Work With You,<br />Not Just for You.</h3>
+            <p>We work as an extension of your team, combining strategy, design and engineering to build solutions that last.</p>
           </div>
           <div className="process-approach-points">
             <span data-tone="orange"><i><MessageCircleMore aria-hidden /></i><b>Understand<br />Real Needs</b></span>

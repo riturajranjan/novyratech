@@ -363,23 +363,6 @@ export function WhatWeDo() {
         />
       </svg>
 
-      <div aria-hidden className="wwd-note wwd-note-left">
-        Ideas
-        <br />
-        Technology
-        <br />
-        Real Impact
-        <span />
-      </div>
-      <div aria-hidden className="wwd-note wwd-note-right">
-        From
-        <br />
-        Vision to
-        <br />
-        Growth
-        <span />
-      </div>
-
       <div className="wwd-header">
         <div className="wwd-eyebrow">
           <span />

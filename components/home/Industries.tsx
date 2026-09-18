@@ -585,14 +585,6 @@ export function Industries() {
             </div>
           ))}
         </div>
-
-        {/* <div className="relative z-10 mt-8 flex items-center justify-center gap-7 text-[10px] font-extrabold uppercase tracking-[0.32em] text-navy-950/45">
-          <span className="hidden h-px w-28 bg-navy-950/14 sm:block" aria-hidden />
-          <span>Empowering Businesses</span>
-          <span aria-hidden>•</span>
-          <span>Strengthening Bharat</span>
-          <span className="hidden h-px w-28 bg-navy-950/14 sm:block" aria-hidden />
-        </div> */}
       </div>
     </section>
   );
