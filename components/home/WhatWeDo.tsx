@@ -2,7 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { type CSSProperties, type PointerEvent as ReactPointerEvent, useEffect, useRef, useState } from "react";
+import {
+  type CSSProperties,
+  type PointerEvent as ReactPointerEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -71,7 +77,8 @@ const SERVICES: ServiceItem[] = [
     icon: MonitorSmartphone,
     accent: "#ff6b35",
     visual: "/images/services/website-development.webp",
-    visualAlt: "Premium laptop and smartphone showing a responsive modern website",
+    visualAlt:
+      "Premium laptop and smartphone showing a responsive modern website",
     mobileDescription: "Build trust online with a fast, modern website.",
     mobileChips: ["Responsive", "SEO Ready", "Modern UI"],
     mobileObjectPosition: "58% center",
@@ -97,8 +104,10 @@ const SERVICES: ServiceItem[] = [
     icon: LayoutDashboard,
     accent: "#1768c5",
     visual: "/images/services/saas-web-applications.webp",
-    visualAlt: "Premium laptop showing a modern SaaS dashboard and workflow product",
-    mobileDescription: "Custom solutions to streamline and scale your business.",
+    visualAlt:
+      "Premium laptop showing a modern SaaS dashboard and workflow product",
+    mobileDescription:
+      "Custom solutions to streamline and scale your business.",
     mobileChips: ["Scalable", "API Integration", "Cloud Ready"],
     mobileObjectPosition: "62% center",
     mobileAccent: "#347ae2",
@@ -123,8 +132,10 @@ const SERVICES: ServiceItem[] = [
     icon: BrainCircuit,
     accent: "#13a072",
     visual: "/images/services/ai-automation.webp",
-    visualAlt: "Premium laptop showing an AI automation workspace for business workflows",
-    mobileDescription: "Automate repetitive work with smarter digital workflows.",
+    visualAlt:
+      "Premium laptop showing an AI automation workspace for business workflows",
+    mobileDescription:
+      "Automate repetitive work with smarter digital workflows.",
     mobileChips: ["Automation", "AI Workflows", "Smart Tools"],
     mobileObjectPosition: "58% center",
     mobileAccent: "#16a36f",
@@ -201,7 +212,8 @@ const SERVICES: ServiceItem[] = [
     icon: Code2,
     accent: "#137a43",
     visual: "/images/services/custom-business-software.webp",
-    visualAlt: "Premium laptop showing a custom business operations software dashboard",
+    visualAlt:
+      "Premium laptop showing a custom business operations software dashboard",
     mobileDescription: "Software built around the way your business works.",
     mobileChips: ["Custom Built", "Secure", "Scalable"],
     mobileObjectPosition: "56% center",
@@ -220,7 +232,9 @@ const SERVICES: ServiceItem[] = [
 export function WhatWeDo() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [mobileIndex, setMobileIndex] = useState(0);
-  const [slideDirection, setSlideDirection] = useState<"next" | "previous">("next");
+  const [slideDirection, setSlideDirection] = useState<"next" | "previous">(
+    "next",
+  );
   const [sliderVisible, setSliderVisible] = useState(false);
   const [pageVisible, setPageVisible] = useState(true);
   const hoverTimer = useRef<number | null>(null);
@@ -231,21 +245,31 @@ export function WhatWeDo() {
   const active = SERVICES[activeIndex];
   const mobileService = SERVICES[mobileIndex];
 
-  useEffect(() => () => {
-    if (hoverTimer.current) {
-      window.clearTimeout(hoverTimer.current);
-    }
-  }, []);
+  useEffect(
+    () => () => {
+      if (hoverTimer.current) {
+        window.clearTimeout(hoverTimer.current);
+      }
+    },
+    [],
+  );
 
   useEffect(() => {
-    reducedMotion.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    reducedMotion.current = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     const handleVisibility = () => setPageVisible(!document.hidden);
     handleVisibility();
     document.addEventListener("visibilitychange", handleVisibility);
     const slider = mobileSliderRef.current;
-    if (!slider) return () => document.removeEventListener("visibilitychange", handleVisibility);
+    if (!slider)
+      return () =>
+        document.removeEventListener("visibilitychange", handleVisibility);
     const observer = new IntersectionObserver(
-      ([entry]) => setSliderVisible(entry.isIntersecting && entry.intersectionRatio >= 0.4),
+      ([entry]) =>
+        setSliderVisible(
+          entry.isIntersecting && entry.intersectionRatio >= 0.4,
+        ),
       { threshold: [0, 0.4, 0.75] },
     );
     observer.observe(slider);
@@ -264,12 +288,17 @@ export function WhatWeDo() {
     return () => window.clearTimeout(timer);
   }, [mobileIndex, pageVisible, sliderVisible]);
 
-  const showMobileService = (index: number, direction?: "next" | "previous") => {
+  const showMobileService = (
+    index: number,
+    direction?: "next" | "previous",
+  ) => {
     setSlideDirection(direction ?? (index > mobileIndex ? "next" : "previous"));
     setMobileIndex((index + SERVICES.length) % SERVICES.length);
   };
 
-  const handleMobilePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+  const handleMobilePointerDown = (
+    event: ReactPointerEvent<HTMLDivElement>,
+  ) => {
     pointerStartX.current = event.clientX;
     pointerStartY.current = event.clientY;
     event.currentTarget.setPointerCapture(event.pointerId);
@@ -279,7 +308,10 @@ export function WhatWeDo() {
     const deltaX = event.clientX - pointerStartX.current;
     const deltaY = event.clientY - pointerStartY.current;
     if (Math.abs(deltaX) < 45 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
-    showMobileService(mobileIndex + (deltaX < 0 ? 1 : -1), deltaX < 0 ? "next" : "previous");
+    showMobileService(
+      mobileIndex + (deltaX < 0 ? 1 : -1),
+      deltaX < 0 ? "next" : "previous",
+    );
   };
 
   const scheduleHover = (index: number) => {
@@ -302,22 +334,49 @@ export function WhatWeDo() {
         aria-hidden
         className="wwd-cityline"
         viewBox="0 0 430 96"
-        fill="none"
-      >
+        fill="none">
         <path d="M4 88H426" stroke="currentColor" strokeWidth="2" />
-        <path d="M36 88V58L58 40L80 58V88M50 88V70H66V88" stroke="currentColor" strokeWidth="2" />
-        <path d="M112 88V48L144 28L176 48V88M124 88V62H164V88" stroke="currentColor" strokeWidth="2" />
-        <path d="M208 88V36L232 18L256 36V88M220 88V58H244V88" stroke="currentColor" strokeWidth="2" />
-        <path d="M292 88C316 52 360 52 420 88" stroke="currentColor" strokeWidth="2" />
-        <path d="M306 88V72M330 88V64M354 88V60M378 88V66M402 88V76" stroke="currentColor" strokeWidth="2" />
+        <path
+          d="M36 88V58L58 40L80 58V88M50 88V70H66V88"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
+        <path
+          d="M112 88V48L144 28L176 48V88M124 88V62H164V88"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
+        <path
+          d="M208 88V36L232 18L256 36V88M220 88V58H244V88"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
+        <path
+          d="M292 88C316 52 360 52 420 88"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
+        <path
+          d="M306 88V72M330 88V64M354 88V60M378 88V66M402 88V76"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
       </svg>
 
       <div aria-hidden className="wwd-note wwd-note-left">
-        Ideas<br />Technology<br />Real Impact
+        Ideas
+        <br />
+        Technology
+        <br />
+        Real Impact
         <span />
       </div>
       <div aria-hidden className="wwd-note wwd-note-right">
-        From<br />Vision to<br />Growth
+        From
+        <br />
+        Vision to
+        <br />
+        Growth
         <span />
       </div>
 
@@ -328,11 +387,18 @@ export function WhatWeDo() {
           <span />
         </div>
         <h2>
-          <span className="wwd-mobile-heading-line">Digital solutions built</span><br className="wwd-desktop-heading-break" />
-          <span className="wwd-mobile-heading-line">for <span className="text-blue-700">real business</span>{" "}<span className="text-green-700">growth.</span></span>
+          <span className="wwd-mobile-heading-line">
+            Digital solutions built
+          </span>
+          <br className="wwd-desktop-heading-break" />
+          <span className="wwd-mobile-heading-line">
+            for <span className="text-blue-700">real business</span>{" "}
+            <span className="text-green-700">growth.</span>
+          </span>
         </h2>
         <p>
-          From your first website to a complete business platform, we build technology around what your business actually needs.
+          From your first website to a complete business platform, we build
+          technology around what your business actually needs.
         </p>
       </div>
 
@@ -342,20 +408,24 @@ export function WhatWeDo() {
         aria-label="Our services"
         aria-live="polite"
         tabIndex={0}
-        style={{ "--service-accent": mobileService.mobileAccent } as CSSProperties}
+        style={
+          { "--service-accent": mobileService.mobileAccent } as CSSProperties
+        }
         onPointerDown={handleMobilePointerDown}
         onPointerUp={handleMobilePointerUp}
         onKeyDown={(event) => {
-          if (event.key === "ArrowLeft") showMobileService(mobileIndex - 1, "previous");
-          if (event.key === "ArrowRight") showMobileService(mobileIndex + 1, "next");
-        }}
-      >
+          if (event.key === "ArrowLeft")
+            showMobileService(mobileIndex - 1, "previous");
+          if (event.key === "ArrowRight")
+            showMobileService(mobileIndex + 1, "next");
+        }}>
         <article
           key={mobileService.id}
           className="wwd-mobile-card"
           data-direction={slideDirection}
-          style={{ "--service-accent": mobileService.mobileAccent } as CSSProperties}
-        >
+          style={
+            { "--service-accent": mobileService.mobileAccent } as CSSProperties
+          }>
           <div className="wwd-mobile-visual">
             <Image
               src={mobileService.visual}
@@ -368,11 +438,22 @@ export function WhatWeDo() {
             <span className="wwd-mobile-image-fade" aria-hidden />
           </div>
           <div className="wwd-mobile-copy">
-            <div className="wwd-mobile-kicker"><span />{mobileService.number} / 06</div>
-            <h3>{mobileService.mobileTitle[0]}<br />{mobileService.mobileTitle[1]}</h3>
+            <div className="wwd-mobile-kicker">
+              <span />
+              {mobileService.number} / 06
+            </div>
+            <h3>
+              {mobileService.mobileTitle[0]}
+              <br />
+              {mobileService.mobileTitle[1]}
+            </h3>
             <p>{mobileService.mobileDescription}</p>
-            <div className="wwd-mobile-chips" aria-label={`${mobileService.title} capabilities`}>
-              {mobileService.mobileChips.map((chip) => <span key={chip}>{chip}</span>)}
+            <div
+              className="wwd-mobile-chips"
+              aria-label={`${mobileService.title} capabilities`}>
+              {mobileService.mobileChips.map((chip) => (
+                <span key={chip}>{chip}</span>
+              ))}
             </div>
             <Link href={mobileService.href} className="wwd-mobile-learn">
               Explore Service <ArrowRight />
@@ -381,10 +462,15 @@ export function WhatWeDo() {
         </article>
 
         <div className="wwd-mobile-slider-nav">
-          <button type="button" aria-label="Previous service" onClick={() => showMobileService(mobileIndex - 1, "previous")}>
+          <button
+            type="button"
+            aria-label="Previous service"
+            onClick={() => showMobileService(mobileIndex - 1, "previous")}>
             <ArrowLeft aria-hidden />
           </button>
-          <div className="wwd-mobile-dots" aria-label={`Service ${mobileIndex + 1} of ${SERVICES.length}`}>
+          <div
+            className="wwd-mobile-dots"
+            aria-label={`Service ${mobileIndex + 1} of ${SERVICES.length}`}>
             {SERVICES.map((service, index) => (
               <button
                 key={service.id}
@@ -400,8 +486,7 @@ export function WhatWeDo() {
             type="button"
             aria-label="Next service"
             className="wwd-mobile-next"
-            onClick={() => showMobileService(mobileIndex + 1, "next")}
-          >
+            onClick={() => showMobileService(mobileIndex + 1, "next")}>
             <span className="wwd-mobile-progress" aria-hidden />
             <ArrowRight aria-hidden />
           </button>
@@ -424,8 +509,7 @@ export function WhatWeDo() {
                 className="wwd-service-row"
                 style={{ "--service-accent": service.accent } as CSSProperties}
                 onClick={() => setActiveIndex(index)}
-                onMouseEnter={() => scheduleHover(index)}
-              >
+                onMouseEnter={() => scheduleHover(index)}>
                 <span className="wwd-service-number">{service.number}</span>
                 <span className="wwd-service-icon">
                   <Icon className="h-5 w-5" aria-hidden />
@@ -442,8 +526,7 @@ export function WhatWeDo() {
           role="tabpanel"
           className="wwd-panel"
           style={{ "--service-accent": active.accent } as CSSProperties}
-          key={active.id}
-        >
+          key={active.id}>
           <div className="wwd-panel-main">
             <div className="wwd-copy">
               <div className="wwd-copy-kicker">
@@ -475,7 +558,10 @@ export function WhatWeDo() {
             {active.features.map((feature) => {
               const FeatureIcon = feature.icon;
               return (
-                <div key={feature.label} className="wwd-feature-chip" data-tone={feature.tone}>
+                <div
+                  key={feature.label}
+                  className="wwd-feature-chip"
+                  data-tone={feature.tone}>
                   <span>
                     <FeatureIcon className="h-5 w-5" aria-hidden />
                   </span>
@@ -485,14 +571,6 @@ export function WhatWeDo() {
             })}
           </div>
         </div>
-      </div>
-
-      <div className="wwd-footer-detail">
-        <span />
-        <p>Empowering Businesses</p>
-        <b aria-hidden>•</b>
-        <p>Strengthening Bharat</p>
-        <span />
       </div>
     </section>
   );

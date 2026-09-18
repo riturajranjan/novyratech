@@ -8,6 +8,10 @@ import { WhyNovyra } from "@/components/home/WhyNovyra";
 import { SelectedWork } from "@/components/home/SelectedWork";
 import { HowWeWork } from "@/components/home/HowWeWork";
 import { Pricing } from "@/components/home/Pricing";
+import { ClientStories } from "@/components/home/ClientStories";
+import { InsightsIdeas } from "@/components/home/InsightsIdeas";
+import { FinalCta } from "@/components/home/FinalCta";
+import { Footer } from "@/components/layout/Footer";
 
 export default function Home() {
   return (
@@ -22,7 +26,11 @@ export default function Home() {
         <SelectedWork />
         <HowWeWork />
         <Pricing />
+        <ClientStories />
+        <InsightsIdeas />
+        <FinalCta />
       </main>
+      <Footer />
       <MobileBottomNav />
     </>
   );
