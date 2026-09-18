@@ -39,7 +39,7 @@ const PROCESS_STAGES: ProcessStage[] = [
 const TRUST_POINTS = [
   { label: <>Transparent<br />Process</>, icon: Settings2, tone: "blue" },
   { label: <>Collaborative<br />Partnership</>, icon: Users, tone: "green" },
-  { label: <>Focus on<br />Real Outcomes</>, icon: Target, tone: "orange" },
+  { label: <>Focus on<br />Outcomes</>, icon: Target, tone: "orange" },
 ];
 
 export function HowWeWork() {
@@ -66,6 +66,7 @@ export function HowWeWork() {
           </div>
 
           <div id="process-journey" className="process-journey">
+            {/* TODO: swap this illustrated landscape for a real graphic (or simple diagram) — keeping it for now since the 5 stage cards below are positioned to match it. */}
             <div className="process-desktop-art">
               <Image src="/images/how-we-work/process-journey.png" alt="A winding miniature landscape illustrating discovery, design, development, launch and growth" fill sizes="(min-width: 1024px) 58vw, 0px" loading="eager" />
               {PROCESS_STAGES.map(({ number, title, desktopDescription, tone, icon: Icon }) => (
@@ -76,6 +77,7 @@ export function HowWeWork() {
               ))}
             </div>
 
+            {/* TODO: same as above — swap for a real graphic once available; stage cards are positioned to match this artwork. */}
             <div className="process-mobile-art">
               <Image src="/images/how-we-work/process-journey-mobile.png" alt="A vertical miniature landscape illustrating Novyra's five-stage project process" fill sizes="(max-width: 767px) calc(100vw - 28px), 620px" loading="eager" />
               {PROCESS_STAGES.map(({ number, title, mobileDescription, tone, icon: Icon }, index) => (
@@ -110,9 +112,9 @@ export function HowWeWork() {
             <p>We work as an extension of your team, combining strategy, design and engineering to build solutions that last.</p>
           </div>
           <div className="process-approach-points">
-            <span data-tone="orange"><i><MessageCircleMore aria-hidden /></i><b>Understand<br />Real Needs</b></span>
-            <span data-tone="blue"><i><Lightbulb aria-hidden /></i><b>Build<br />Right Solutions</b></span>
-            <span data-tone="green"><i><BarChart3 aria-hidden /></i><b>Create<br />Lasting Impact</b></span>
+            <span data-tone="orange"><i><MessageCircleMore aria-hidden /></i><b>Understand<br />How You Work</b></span>
+            <span data-tone="blue"><i><Lightbulb aria-hidden /></i><b>Build the<br />Right Fit</b></span>
+            <span data-tone="green"><i><BarChart3 aria-hidden /></i><b>Support After<br />Launch</b></span>
           </div>
           <div className="process-rings" aria-hidden><i /></div>
         </aside>

@@ -110,7 +110,7 @@ export function Footer() {
       transition={{ duration: .45, ease: "easeOut" }}
     >
       <div className="footer-story">
-        <picture>
+        {/* <picture>
           <source media="(max-width: 767px)" srcSet="/images/footer/footer-story-mobile.webp" />
           <Image
             src="/images/footer/footer-story-desktop.webp"
@@ -121,7 +121,7 @@ export function Footer() {
         </picture>
         <p className="footer-story-note footer-story-note-left" aria-hidden>Good ideas<br />deserve a place<br />to grow.<i /></p>
         <p className="footer-story-path" aria-hidden>IDEAS <span>→</span> PEOPLE <span>→</span> TECHNOLOGY <span>→</span> IMPACT</p>
-        <p className="footer-story-note footer-story-note-right" aria-hidden>Let’s build<br />a better<br />tomorrow.<i /></p>
+        <p className="footer-story-note footer-story-note-right" aria-hidden>Let’s build<br />a better<br />tomorrow.<i /></p> */}
       </div>
 
       <div className="site-footer-main">
@@ -159,14 +159,14 @@ export function Footer() {
           </div>
 
           <div className="footer-value-row">
-            <p className="footer-lower-note" aria-hidden>Building<br />Ideas Today<br />for a Brighter Tomorrow.<i /></p>
+            {/* <p className="footer-lower-note" aria-hidden>Building<br />Ideas Today<br />for a Brighter Tomorrow.<i /></p> */}
             <div className="footer-values">
               {FOOTER_VALUES.map((item) => {
                 const Icon = item.icon;
                 return <div key={item.label}><Icon aria-hidden /><p><strong>{item.label}</strong><span>{item.detail}</span></p></div>;
               })}
             </div>
-            <p className="footer-next-note" aria-hidden><ArrowRight />Maybe<br />your idea<br />is next.<i /></p>
+            {/* <p className="footer-next-note" aria-hidden><ArrowRight />Maybe<br />your idea<br />is next.<i /></p> */}
           </div>
         </div>
 

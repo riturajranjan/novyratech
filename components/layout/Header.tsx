@@ -45,7 +45,7 @@ export function Header() {
               TECHNOLOGIES
             </span>
             <span className="mt-1 text-[10px] font-medium tracking-[0.25em] text-navy-900/70">
-              Innovate · Build · Elevate
+              Design · Build · Support
             </span>
           </span>
         </Link>

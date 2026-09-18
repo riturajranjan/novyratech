@@ -31,11 +31,14 @@ type Project = {
   accent: string;
   icon: LucideIcon;
   capabilities: { label: string; icon: LucideIcon }[];
+  // True until this becomes a real, named client project — shown as a "Concept" badge so we never imply fake work history.
+  isConcept: boolean;
 };
 
 const PROJECTS: Project[] = [
   {
     id: "campus-management",
+    isConcept: true,
     title: "Campus Management Platform",
     navigatorTitle: "Campus Management",
     category: "Education",
@@ -52,6 +55,7 @@ const PROJECTS: Project[] = [
   },
   {
     id: "learning-ai",
+    isConcept: true,
     title: "AI Learning Platform",
     navigatorTitle: "AI Learning",
     category: "EdTech",
@@ -68,6 +72,7 @@ const PROJECTS: Project[] = [
   },
   {
     id: "healthcare",
+    isConcept: true,
     title: "Healthcare Operations Portal",
     navigatorTitle: "Healthcare Operations",
     category: "Healthcare",
@@ -84,6 +89,7 @@ const PROJECTS: Project[] = [
   },
   {
     id: "business-commerce",
+    isConcept: true,
     title: "Business Commerce Platform",
     navigatorTitle: "Business Commerce",
     category: "Digital Commerce",
@@ -100,6 +106,7 @@ const PROJECTS: Project[] = [
   },
   {
     id: "saas-operations",
+    isConcept: true,
     title: "SaaS Operations Workspace",
     navigatorTitle: "SaaS Workspace",
     category: "Business SaaS",
@@ -116,6 +123,7 @@ const PROJECTS: Project[] = [
   },
   {
     id: "fitness-wellness",
+    isConcept: true,
     title: "Fitness & Wellness Platform",
     navigatorTitle: "Fitness & Wellness",
     category: "Fitness",
@@ -166,8 +174,8 @@ export function SelectedWork() {
             <span>Work We&apos;re</span>
             <span>Proud <em>to Ship.</em></span>
           </h2>
-          <p className="work-desktop-copy">From schools and hospitals to startups and growing businesses — we build digital products that solve real problems and create lasting value.</p>
-          <p className="work-mobile-copy">From schools and hospitals to startups — we build digital products that create lasting impact.</p>
+          <p className="work-desktop-copy">These concepts show the kind of websites, portals and dashboards we build for schools, hospitals and growing businesses.</p>
+          <p className="work-mobile-copy">Concepts showing the kind of websites and dashboards we build.</p>
           <div className="work-actions">
             <Link href="/work" className="work-primary-action">Explore All Projects <ArrowRight aria-hidden /></Link>
             <button type="button" className="work-watch-action" aria-label="Watch success stories">
@@ -176,7 +184,7 @@ export function SelectedWork() {
           </div>
           <div className="work-proof-points" aria-label="Our project approach">
             <span><Layers3 aria-hidden />Diverse Industries</span>
-            <span><BriefcaseBusiness aria-hidden />Real Projects</span>
+            <span><BriefcaseBusiness aria-hidden />Concept Projects</span>
             <span><Workflow aria-hidden />End-to-End Delivery</span>
           </div>
           </header>
@@ -195,6 +203,7 @@ export function SelectedWork() {
               <div className="work-featured-image">
                 <Image src={activeProject.image} alt={activeProject.alt} fill priority={activeIndex === 0} sizes="(min-width: 1200px) 680px, (min-width: 768px) 82vw, calc(100vw - 28px)" />
                 <span className="work-category-pill"><ActiveIcon aria-hidden />{activeProject.category}</span>
+                {activeProject.isConcept ? <span className="work-concept-badge">Concept</span> : null}
               </div>
               <div className="work-featured-content">
                 <div>
@@ -228,7 +237,7 @@ export function SelectedWork() {
           <div className="work-filmstrip-caption" key={`caption-${activeProject.id}`}>
             <small>{String(activeIndex + 1).padStart(2, "0")} / {String(PROJECTS.length).padStart(2, "0")}</small>
             <strong>{activeProject.title}</strong>
-            <span>{activeProject.category}</span>
+            <span>{activeProject.category}{activeProject.isConcept ? " · Concept" : ""}</span>
           </div>
         </div>
 
@@ -240,7 +249,7 @@ export function SelectedWork() {
                 <button type="button" className="work-index-select" onClick={() => selectProject(index, true)} aria-pressed={index === activeIndex} aria-label={`Preview ${project.title}`}>
                   <b>{String(index + 1).padStart(2, "0")}</b>
                   <span className="work-index-thumb"><Image src={project.image} alt="" fill sizes="58px" /></span>
-                  <span className="work-index-name"><strong>{project.navigatorTitle}</strong><small>{project.category}</small></span>
+                  <span className="work-index-name"><strong>{project.navigatorTitle}</strong><small>{project.category}{project.isConcept ? " · Concept" : ""}</small></span>
                 </button>
                 <Link href={`/work#${project.id}`} aria-label={`Open ${project.title}`}><ArrowRight aria-hidden /></Link>
               </div>
@@ -254,7 +263,7 @@ export function SelectedWork() {
         <aside className="work-impact-strip">
           <div className="work-impact-orbit" aria-hidden><span /></div>
           <strong>Built for Businesses<br />Across India.</strong>
-          <p><b aria-hidden>“</b>From local shops to fast-scaling brands, we build technology that helps real businesses serve more customers and run better.</p>
+          <p><b aria-hidden>“</b>From local shops to fast-scaling brands, we build websites and software that help businesses serve more customers and run better.</p>
           <Link href="#contact">Start Your Project <ArrowRight aria-hidden /></Link>
         </aside>
       </div>

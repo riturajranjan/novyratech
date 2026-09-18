@@ -9,8 +9,6 @@ import {
   BookOpenText,
   Bookmark,
   BriefcaseBusiness,
-  CalendarDays,
-  Clock3,
   FolderOpen,
   LayoutDashboard,
   Lightbulb,
@@ -33,8 +31,6 @@ type InsightArticle = {
   categoryLabel: string;
   image: string;
   alt: string;
-  publishedAt: string;
-  readTime: string;
   featured: boolean;
   href: string;
 };
@@ -59,8 +55,6 @@ const SAMPLE_ARTICLES: InsightArticle[] = [
     categoryLabel: "Web Development",
     image: "/images/insights/featured-website-growth.webp",
     alt: "Warm business workspace with a laptop, notebook, coffee mug and growth books",
-    publishedAt: "May 10, 2024",
-    readTime: "5 min read",
     featured: true,
     href: "/blog",
   },
@@ -72,8 +66,6 @@ const SAMPLE_ARTICLES: InsightArticle[] = [
     categoryLabel: "AI & Automation",
     image: "/images/insights/insight-ai-business.webp",
     alt: "Indian business professional working on a laptop in a warm modern office",
-    publishedAt: "Apr 28, 2024",
-    readTime: "5 min read",
     featured: false,
     href: "/blog",
   },
@@ -85,8 +77,6 @@ const SAMPLE_ARTICLES: InsightArticle[] = [
     categoryLabel: "SaaS",
     image: "/images/insights/insight-saas-roadmap.webp",
     alt: "Open notebook showing a handwritten Plan, Build and Scale roadmap",
-    publishedAt: "Apr 15, 2024",
-    readTime: "6 min read",
     featured: false,
     href: "/blog",
   },
@@ -98,8 +88,6 @@ const SAMPLE_ARTICLES: InsightArticle[] = [
     categoryLabel: "Digital Growth",
     image: "/images/insights/insight-digital-growth.webp",
     alt: "Hands using a laptop with a clean blue analytics dashboard",
-    publishedAt: "Apr 05, 2024",
-    readTime: "4 min read",
     featured: false,
     href: "/blog",
   },
@@ -128,7 +116,6 @@ function FeaturedArticle({ article }: { article: InsightArticle }) {
       <div className="insights-featured-shade" />
       <div className="insights-featured-top">
         <span><Star aria-hidden /> FEATURED ARTICLE</span>
-        <div><small><CalendarDays aria-hidden />{article.publishedAt}</small><i /><small><Clock3 aria-hidden />{article.readTime}</small></div>
       </div>
       <div className="insights-featured-copy">
         <h3>{article.title}</h3>
@@ -149,7 +136,6 @@ function SupportingArticle({ article }: { article: InsightArticle }) {
         <span className="insights-support-copy">
           <b data-category={article.category}>{article.categoryLabel}</b>
           <strong>{article.title}</strong>
-          <small><span><CalendarDays aria-hidden />{article.publishedAt}</span><i /><span><Clock3 aria-hidden />{article.readTime}</span></small>
         </span>
         <i className="insights-support-arrow"><ArrowRight aria-hidden /></i>
       </Link>
@@ -206,7 +192,6 @@ export function InsightsIdeas() {
                   <div className="insights-mobile-featured-copy">
                     <b>{featured.categoryLabel}</b>
                     <h3>{featured.title}</h3>
-                    <small><span><CalendarDays aria-hidden />{featured.publishedAt}</span><i /><span><Clock3 aria-hidden />{featured.readTime}</span></small>
                   </div>
                   <Link href={featured.href} aria-label={`Read ${featured.title}`}><ArrowRight aria-hidden /></Link>
               </article>
@@ -218,10 +203,6 @@ export function InsightsIdeas() {
           <Link className="insights-mobile-explore" href="/blog">Explore All Insights <ArrowRight aria-hidden /></Link>
         </div>
       </div>
-{/* 
-      <div className="insights-desk-scene" aria-hidden>
-        <Image src="/images/insights/insights-desk-scene.png" alt="" fill sizes="100vw" />
-      </div> */}
     </section>
   );
 }

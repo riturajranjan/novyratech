@@ -8,10 +8,12 @@ import { WhyNovyra } from "@/components/home/WhyNovyra";
 import { SelectedWork } from "@/components/home/SelectedWork";
 import { HowWeWork } from "@/components/home/HowWeWork";
 import { Pricing } from "@/components/home/Pricing";
-import { ClientStories } from "@/components/home/ClientStories";
+import { RealTestimonials } from "@/components/home/RealTestimonials";
 import { InsightsIdeas } from "@/components/home/InsightsIdeas";
 import { FinalCta } from "@/components/home/FinalCta";
 import { Footer } from "@/components/layout/Footer";
+import { WhatsAppFloatButton } from "@/components/layout/WhatsAppFloatButton";
+import { FEATURE_FLAGS } from "@/lib/constants";
 
 export default function Home() {
   return (
@@ -26,12 +28,13 @@ export default function Home() {
         <SelectedWork />
         <HowWeWork />
         <Pricing />
-        <ClientStories />
-        <InsightsIdeas />
+        <RealTestimonials />
+        {FEATURE_FLAGS.showInsights ? <InsightsIdeas /> : null}
         <FinalCta />
       </main>
       <Footer />
       <MobileBottomNav />
+      <WhatsAppFloatButton />
     </>
   );
 }

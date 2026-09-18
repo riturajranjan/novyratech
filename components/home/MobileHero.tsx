@@ -32,7 +32,7 @@ export function MobileHero() {
           <span className="mobile-hero-logo-type">
             <span>NOVYRA</span>
             <small>TECHNOLOGIES</small>
-            <em>Innovate · Build · Elevate</em>
+            <em>Design · Build · Support</em>
           </span>
         </Link>
 
@@ -62,13 +62,14 @@ export function MobileHero() {
             <span />
           </div>
 
-          <h1 className="mobile-hero-title">
+          {/* Intentionally not an h1 — the desktop Hero component holds the page's one h1 (same headline). This is a styled visual duplicate for the mobile layout. */}
+          <p className="mobile-hero-title">
             <span>Technology</span>
             <span>
               <b>That</b> <strong>Empowers</strong>
             </span>
             <span>Real Business</span>
-          </h1>
+          </p>
 
           <p className="mobile-hero-description">
             We help schools, hospitals, local businesses and growing brands build modern websites, web applications and

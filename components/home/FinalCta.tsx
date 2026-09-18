@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Lightbulb, MessageCircle, UsersRound } from "lucide-react";
 import { ANNOUNCEMENT } from "@/lib/constants";
+import { ContactForm } from "@/components/home/ContactForm";
 
 const TRUST_POINTS = [
   { label: "Clear", detail: "Communication", icon: MessageCircle },
@@ -23,8 +24,8 @@ function ConversationSheet({ mobile = false }: { mobile?: boolean }) {
       transition={{ duration: .42, ease: "easeOut" }}
     >
       <p className="final-cta-sheet-note">Just tell us<br />what you’re building.<i /></p>
-      <a className="final-cta-primary" href={phoneHref}>Start Your Project <ArrowRight aria-hidden /></a>
-      <a className="final-cta-secondary" href={phoneHref}><MessageCircle aria-hidden /> Talk to Our Team</a>
+      <a className="final-cta-primary" href="#contact-form">Start Your Project <ArrowRight aria-hidden /></a>
+      <a className="final-cta-secondary" href={phoneHref}><MessageCircle aria-hidden /> Call Us</a>
       <div className="final-cta-trust-points">
         {TRUST_POINTS.map((point) => {
           const Icon = point.icon;
@@ -45,8 +46,6 @@ export function FinalCta() {
           <p>Whether you’re starting small, improving an existing business, or building<br className="final-cta-desktop-break" /> something ambitious — let’s find the right way forward together.</p>
         </motion.header>
 
-        {/* <p className="final-cta-note final-cta-note-right" aria-hidden>No pressure.<br />No complicated<br />process.<i /></p> */}
-
         <motion.div className="final-cta-visual" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: .2 }} transition={{ duration: .48 }}>
           <Image src="/images/final-cta/build-together-desktop.webp" alt="Business professionals discussing a digital project together in a modern workspace" fill sizes="(max-width: 1532px) calc(100vw - 32px), 1500px" />
           <ConversationSheet />
@@ -59,12 +58,12 @@ export function FinalCta() {
           <ConversationSheet mobile />
         </div>
 
-        {/* <div className="final-cta-lower">
-          <div className="final-cta-chapter-note" aria-hidden>Your next chapter<br />could start here.<i /><ArrowRight /></div>
-        </div> */}
+        <div id="contact-form" className="final-cta-form-wrap">
+          <h3>Tell Us About Your Project</h3>
+          <p>Fill this in and we&apos;ll get back to you within one business day.</p>
+          <ContactForm />
+        </div>
       </div>
-
-      {/* <div className="final-cta-plant" aria-hidden><Image src="/images/final-cta/final-cta-plant.png" alt="" fill sizes="(max-width: 767px) 180px, 300px" /></div> */}
     </section>
   );
 }

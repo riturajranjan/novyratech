@@ -58,8 +58,44 @@ export const SERVICE_SHORTCUTS: ServiceShortcut[] = [
 ];
 
 export const ANNOUNCEMENT = {
-  message: "Empowering Businesses from Small Towns to a Smarter Tomorrow",
+  message: "Websites & Software for Schools, Hospitals and Local Businesses",
   location: "Muzaffarpur, Bihar",
   reach: "Working Across India",
-  phone: "+91 79037 24407",
+  phone: "+91 75478 25187",
+};
+
+// TODO: confirm the real business email — placeholder until the client provides one.
+export const CONTACT_EMAIL = "hello@novyratech.com";
+
+// TODO: confirm this is the correct WhatsApp Business number (currently reusing the phone number).
+export const WHATSAPP_NUMBER = "+91 75478 25187";
+export const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER.replace(/[^\d]/g, "")}`;
+
+export const BUSINESS_ADDRESS = {
+  locality: "Muzaffarpur",
+  region: "Bihar",
+  country: "India",
+  // TODO: add a full street address / PIN code once available.
+  display: "Muzaffarpur, Bihar, India",
+};
+
+export const BUSINESS_TYPES = [
+  "School",
+  "Hospital",
+  "Shop",
+  "Startup",
+  "Other",
+] as const;
+
+export const BUDGET_RANGES = [
+  "Under ₹15,000 (Launch / Starter)",
+  "₹15,000 – ₹35,000 (Starter / Professional)",
+  "₹35,000 – ₹70,000 (Professional / Business)",
+  "₹70,000+ (Business / Enterprise)",
+  "Not sure yet",
+] as const;
+
+export const FEATURE_FLAGS = {
+  // Turn on once real, published articles exist behind /blog/[slug].
+  showInsights: false,
 };
